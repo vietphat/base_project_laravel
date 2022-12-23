@@ -29,5 +29,4 @@ Route::prefix('admin')->group(function () {
             return view('admin.user.add');
         })->name("admin.user.add");
     });
-
 });
