@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('username', 256)->unique();
             $table->string('password_hash', 256);
             $table->string('password_salt', 256);
-            $table->string('password_salt', 256);
+            $table->string('fullname', 256);
             $table->string('phone_number_1', 20);
             $table->string('phone_number_2', 20)->nullable();
             $table->string('email', 256)->nullable();
