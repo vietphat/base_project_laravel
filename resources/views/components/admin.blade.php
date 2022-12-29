@@ -9,7 +9,7 @@ $navbars = config('app-bar');
 <head>
 
     <meta charset="utf-8" />
-    <title>{{$attributes['codePage']}}</title>
+    <title>{{ $attributes['codePage'] }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose ad & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
@@ -539,42 +539,24 @@ $navbars = config('app-bar');
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="d-flex align-items-center">
                                     <img class="rounded-circle header-profile-user"
-                                        src="/ad/assets/images/users/avatar-1.jpg" alt="Header Avatar">
+                                        src="/storage/avatar/{{ Auth::user()->avatar }}" alt="Header Avatar">
                                     <span class="text-start ms-xl-2">
-                                        <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">Anna
-                                            Adame</span>
+                                        <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">
+                                            {{ Auth::user()->fullname }}
+                                        </span>
                                         <span
-                                            class="d-none d-xl-block ms-1 fs-12 text-muted user-name-sub-text">Founder</span>
+                                            class="d-none d-xl-block ms-1 fs-12 text-muted user-name-sub-text">{{ Auth::user()->username }}</span>
                                     </span>
                                 </span>
                             </button>
                             <div class="dropdown-menu dropdown-menu-end">
                                 <!-- item-->
-                                <h6 class="dropdown-header">Welcome Anna!</h6>
+                                <h6 class="dropdown-header">Welcome {{Auth::user()->username}}!</h6>
                                 <a class="dropdown-item" href="pages-profile.html"><i
                                         class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span
                                         class="align-middle">Profile</span></a>
-                                <a class="dropdown-item" href="apps-chat.html"><i
-                                        class="mdi mdi-message-text-outline text-muted fs-16 align-middle me-1"></i>
-                                    <span class="align-middle">Messages</span></a>
-                                <a class="dropdown-item" href="apps-tasks-kanban.html"><i
-                                        class="mdi mdi-calendar-check-outline text-muted fs-16 align-middle me-1"></i>
-                                    <span class="align-middle">Taskboard</span></a>
-                                <a class="dropdown-item" href="pages-faqs.html"><i
-                                        class="mdi mdi-lifebuoy text-muted fs-16 align-middle me-1"></i> <span
-                                        class="align-middle">Help</span></a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="pages-profile.html"><i
-                                        class="mdi mdi-wallet text-muted fs-16 align-middle me-1"></i> <span
-                                        class="align-middle">Balance : <b>$5971.67</b></span></a>
-                                <a class="dropdown-item" href="pages-profile-settings.html"><span
-                                        class="badge bg-soft-success text-success mt-1 float-end">New</span><i
-                                        class="mdi mdi-cog-outline text-muted fs-16 align-middle me-1"></i> <span
-                                        class="align-middle">Settings</span></a>
-                                <a class="dropdown-item" href="auth-lockscreen-basic.html"><i
-                                        class="mdi mdi-lock text-muted fs-16 align-middle me-1"></i> <span
-                                        class="align-middle">Lock screen</span></a>
-                                <a class="dropdown-item" href="auth-logout-basic.html"><i
+                                
+                                <a class="dropdown-item" href="{{ route('admin.logout') }}"><i
                                         class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span
                                         class="align-middle" data-key="t-logout">Logout</span></a>
                             </div>
@@ -619,35 +601,40 @@ $navbars = config('app-bar');
                     <ul class="navbar-nav" id="navbar-nav">
                         @foreach ($navbars as $item)
                             @if (isset($item['childs']))
-                            <li class="nav-item">
-                                <a class="nav-link menu-link collapsed 
-                                {{$item['codePage'] == $attributes['codePage'] ? 'active': ''}}" 
-                                href="#{{$item['codePage']}}" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="{{$item['codePage']}}">
-                                    <i class="{{ $item['icon'] }}"></i> <span data-key="t-dashboards">{{$item['codePage']}}</span>
-                                </a>
-                                @php
-                                $isShow = false;
-
-                                $res = array_filter($item['childs'], function($child) use ($attributes) {
-                                    return $child['codePage'] == $attributes['codePage'];
-                                });
-                                $isShow = !empty($res);
-
-                                @endphp
-                                <div class="collapse menu-dropdown {{$isShow ? 'show' : ''}}" id="{{$item['codePage']}}">
-                                    <ul class="nav nav-sm flex-column">
-                                        @foreach ($item['childs'] as $c)
-                                        <li class="nav-item">
-                                            <a href="{{route($c['routeName'])}}" class="nav-link {{$c['codePage'] == $attributes['codePage'] ? 'active': ''}}" data-key="t-analytics">{{$c['codePage']}}</a>
-                                        </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            </li>
+                                <li class="nav-item">
+                                    <a class="nav-link menu-link collapsed  {{ $item['codePage'] == $attributes['codePage'] ? 'active' : '' }}"
+                                        href="#{{ $item['codePage'] }}" data-bs-toggle="collapse" role="button"
+                                        aria-expanded="false" aria-controls="{{ $item['codePage'] }}">
+                                        <i class="{{ $item['icon'] }}"></i> <span
+                                            data-key="t-dashboards">{{ $item['codePage'] }}</span>
+                                    </a>
+                                    @php
+                                        $isShow = false;
+                                        
+                                        $res = array_filter($item['childs'], function ($child) use ($attributes) {
+                                            return $child['codePage'] == $attributes['codePage'];
+                                        });
+                                        $isShow = !empty($res);
+                                        
+                                    @endphp
+                                    <div class="collapse menu-dropdown {{ $isShow ? 'show' : '' }}"
+                                        id="{{ $item['codePage'] }}">
+                                        <ul class="nav nav-sm flex-column">
+                                            @foreach ($item['childs'] as $c)
+                                                <li class="nav-item">
+                                                    <a href="{{ route($c['routeName']) }}"
+                                                        class="nav-link {{ $c['codePage'] == $attributes['codePage'] ? 'active' : '' }}"
+                                                        data-key="t-analytics">{{ $c['codePage'] }}</a>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </li>
                             @else
                                 <li class="nav-item">
-                                    <a class="nav-link menu-link {{$item['codePage'] == $attributes['codePage'] ? 'active': ''}}" href="{{ route($item['routeName']) }}" role="button"
-                                        aria-expanded="false" aria-controls="sidebarDashboards">
+                                    <a class="nav-link menu-link {{ $item['codePage'] == $attributes['codePage'] ? 'active' : '' }}"
+                                        href="{{ route($item['routeName']) }}" role="button" aria-expanded="false"
+                                        aria-controls="sidebarDashboards">
                                         <i class="{{ $item['icon'] }}"></i> <span
                                             data-key="t-dashboards">{{ $item['codePage'] }}</span>
                                     </a>
@@ -1013,8 +1000,7 @@ $navbars = config('app-bar');
                             <div class="form-check card-radio">
                                 <input class="form-check-input" type="radio" name="data-topbar"
                                     id="topbar-color-dark" value="dark">
-                                <label class="form-check-label p-0 avatar-md w-100 shadow-sm"
-                                    for="topbar-color-dark">
+                                <label class="form-check-label p-0 avatar-md w-100 shadow-sm" for="topbar-color-dark">
                                     <span class="d-flex gap-1 h-100">
                                         <span class="flex-shrink-0">
                                             <span class="bg-light d-flex h-100 flex-column gap-1 p-1">
@@ -1051,8 +1037,7 @@ $navbars = config('app-bar');
                                         <span class="d-flex gap-1 h-100">
                                             <span class="flex-shrink-0">
                                                 <span class="bg-light d-flex h-100 flex-column gap-1 p-1">
-                                                    <span
-                                                        class="d-block p-1 px-2 bg-soft-primary rounded mb-2"></span>
+                                                    <span class="d-block p-1 px-2 bg-soft-primary rounded mb-2"></span>
                                                     <span class="d-block p-1 px-2 pb-0 bg-soft-primary"></span>
                                                     <span class="d-block p-1 px-2 pb-0 bg-soft-primary"></span>
                                                     <span class="d-block p-1 px-2 pb-0 bg-soft-primary"></span>
@@ -1167,8 +1152,7 @@ $navbars = config('app-bar');
                                         <span class="d-flex gap-1 h-100">
                                             <span class="flex-shrink-0">
                                                 <span class="bg-light d-flex h-100 flex-column gap-1 p-1">
-                                                    <span
-                                                        class="d-block p-1 px-2 bg-soft-primary rounded mb-2"></span>
+                                                    <span class="d-block p-1 px-2 bg-soft-primary rounded mb-2"></span>
                                                     <span class="d-block p-1 px-2 pb-0 bg-soft-primary"></span>
                                                     <span class="d-block p-1 px-2 pb-0 bg-soft-primary"></span>
                                                     <span class="d-block p-1 px-2 pb-0 bg-soft-primary"></span>
@@ -1228,8 +1212,7 @@ $navbars = config('app-bar');
                                         <span class="d-flex gap-1 h-100">
                                             <span class="flex-shrink-0">
                                                 <span class="bg-white border-end d-flex h-100 flex-column gap-1 p-1">
-                                                    <span
-                                                        class="d-block p-1 px-2 bg-soft-primary rounded mb-2"></span>
+                                                    <span class="d-block p-1 px-2 bg-soft-primary rounded mb-2"></span>
                                                     <span class="d-block p-1 px-2 pb-0 bg-soft-primary"></span>
                                                     <span class="d-block p-1 px-2 pb-0 bg-soft-primary"></span>
                                                     <span class="d-block p-1 px-2 pb-0 bg-soft-primary"></span>
