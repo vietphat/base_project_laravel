@@ -6,20 +6,14 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('app_users', function (Blueprint $table) {
             $table->id();
-            $table->string('email', 256);
-            $table->string('username', 256)->unique();
+            $table->string('email', 256)->unique();
             $table->string('fullname', 256);
-            $table->string('password_hash', 256);
-            $table->string('phone_number_1', 20);
+            $table->string('password', 256);
+            $table->string('phone_number_1', 20)->nullable();
             $table->string('phone_number_2', 20)->nullable();
             $table->string('address', 256)->nullable();
             $table->string('avatar', 256)->default('default.png')->nullable();
@@ -29,11 +23,6 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('app_users');

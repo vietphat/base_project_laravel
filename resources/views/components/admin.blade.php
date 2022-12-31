@@ -545,17 +545,17 @@ $navbars = config('app-bar');
                                             {{ Auth::user()->fullname }}
                                         </span>
                                         <span
-                                            class="d-none d-xl-block ms-1 fs-12 text-muted user-name-sub-text">{{ Auth::user()->username }}</span>
+                                            class="d-none d-xl-block ms-1 fs-12 text-muted user-name-sub-text">{{ Auth::user()->fullname }}</span>
                                     </span>
                                 </span>
                             </button>
                             <div class="dropdown-menu dropdown-menu-end">
                                 <!-- item-->
-                                <h6 class="dropdown-header">Welcome {{Auth::user()->username}}!</h6>
+                                <h6 class="dropdown-header">Welcome {{ Auth::user()->fullname }}!</h6>
                                 <a class="dropdown-item" href="pages-profile.html"><i
                                         class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span
                                         class="align-middle">Profile</span></a>
-                                
+
                                 <a class="dropdown-item" href="{{ route('admin.logout') }}"><i
                                         class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span
                                         class="align-middle" data-key="t-logout">Logout</span></a>

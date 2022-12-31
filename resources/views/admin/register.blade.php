@@ -65,24 +65,22 @@
                                     <h5 class="text-primary">Create New Account</h5>
                                 </div>
                                 <div class="p-2 mt-4">
-                                    <form action="{{ route('admin.store_register') }}" method="POST">
+                                    <form action="{{ route('admin.register') }}" method="POST">
                                         @csrf
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <x-input name="email" label="Email" type="email" />
-                                                <x-input name="fullname" label="FullName" />
-                                                <x-input name="username" label="UserName" />
-                                                <x-input name="address" label="Address" type="address" />
-
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <x-input name="phone_number_1" label="Phone" type="phone" />
-                                                <x-input name="password_hash" label="Password" type="password" />
+                                                <x-input name="password" label="Password" type="password" />
                                                 <x-input name="confirm_password" label="Confirm Password"
                                                     type="password" />
+                                                <x-input name="address" label="Address" type="address" />
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <x-input name="fullname" label="Fullname" />
+                                                <x-input name="phone_number_1" label="Phonenumber 1" type="phone" />
+                                                <x-input name="phone_number_2" label="Phonenumber 2" type="phone" />
                                             </div>
                                         </div>
-
                                 </div>
 
                                 <div id="password-contain" class="p-3 bg-light mb-2 rounded">
@@ -130,7 +128,7 @@
                     <!-- end card -->
 
                     <div class="mt-4 text-center">
-                        <p class="mb-0">Already have an account ? <a href="{{ route('admin.login') }}"
+                        <p class="mb-0">Already have an account ? <a href="{{ route('admin.get_login_page') }}"
                                 class="fw-semibold text-primary text-decoration-underline"> Signin </a> </p>
                     </div>
 
