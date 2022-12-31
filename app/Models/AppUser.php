@@ -38,6 +38,6 @@ class AppUser extends Authenticatable
     ];
     public function getAuthPassword()
     {
-        return $this->password_hash;
+        return $this->password;
     }
 }

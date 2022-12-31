@@ -104,13 +104,15 @@
                             <div class="card-body p-4">
                                 <div class="text-center mt-2">
                                     <h5 class="text-primary">Welcome Back !</h5>
-                                    {{-- <p class="text-muted">Sign in to continue to Velzon.</p> --}}
+                                    <p class="text-muted">Sign in to continue to Velzon.</p>
                                 </div>
                                 <div class="p-2 mt-4">
-                                    <form action="{{ route('admin.store_login') }}" method="POST">
+                                    <form action="{{ route('admin.login') }}" method="POST">
                                         @csrf
-                                        <x-input name="email" type="email" label="Email" placeholder="Enter Email" />
-                                        <x-input name="password_hash" type="password" label="Password" placeholder="Enter Password" />
+                                        <x-input name="email" type="email" label="Email"
+                                            placeholder="test@example.com" />
+                                        <x-input name="password" type="password" label="Password"
+                                            placeholder="••••••" />
 
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" value=""
@@ -150,7 +152,7 @@
                         <!-- end card -->
 
                         <div class="mt-4 text-center">
-                            <p class="mb-0">Don't have an account ? <a href="{{ route('admin.register') }}"
+                            <p class="mb-0">Don't have an account ? <a href="{{ route('admin.get_register_page') }}"
                                     class="fw-semibold text-primary text-decoration-underline"> Signup </a> </p>
                         </div>
 

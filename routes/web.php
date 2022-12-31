@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\AppAdminController;
+use App\Http\Controllers\AuthControler;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -10,19 +10,19 @@ Route::get('/', function () {
 // Admin
 Route::prefix('admin')->group(function () {
     // Admin - Login
-    Route::get('/',[AppAdminController::class, 'login'])->name('admin.login');
-    Route::post('/',[AppAdminController::class, 'store_login'])->name('admin.store_login');
+    Route::get('/', [AuthControler::class, 'get_login_page'])->name('admin.get_login_page');
+    Route::post('/', [AuthControler::class, 'login'])->name('admin.login');
 
     // Admin - Register
-    Route::get('/register',[AppAdminController::class, 'register'])->name('admin.register');
-    Route::post('/register',[AppAdminController::class, 'store_register'])->name('admin.store_register');
+    Route::get('/register', [AuthControler::class, 'get_register_page'])->name('admin.get_register_page');
+    Route::post('/register', [AuthControler::class, 'register'])->name('admin.register');
 
     // Admin - Logout
-    Route::get('/logout',[AppAdminController::class, 'logout'])->name('admin.logout');
-    
+    Route::get('/logout', [AuthControler::class, 'logout'])->name('admin.logout');
+
     // Admin - Dashboard
-    Route::get('/dashboard',[AppAdminController::class, 'dashboard'])->name('admin.dashboard')->middleware('auth');
-    
+    Route::get('/dashboard', [AuthControler::class, 'dashboard'])->name('admin.dashboard')->middleware('auth');
+
     Route::get('/widgets', function () {
         return view('widgets');
     })->name("admin.widgets")->middleware('auth');
