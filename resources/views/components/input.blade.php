@@ -7,7 +7,7 @@
 @endphp
 <div class="form-group mb-3">
     <label class="form-label">{{ $label }}</label>
-    <input type="{{ $type }}" name="{{ $name }}" placeholder="{{ $placeholder }}"
+    <input value="{{$value}}" type="{{ $type }}" name="{{ $name }}" placeholder="{{ $placeholder }}"
         class="@error($name) is-invalid @enderror form-control">
 </div>
 @error($name)

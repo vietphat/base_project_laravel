@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AppUserController;
 use App\Http\Controllers\AuthControler;
 use Illuminate\Support\Facades\Route;
 
@@ -26,7 +27,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/widgets', function () {
         return view('widgets');
     })->name("admin.widgets")->middleware('auth');
-
+    // Account
     Route::prefix('account')->middleware('auth')->group(function () {
         Route::get('/list', function () {
             return view('admin.account.list');
@@ -35,13 +36,21 @@ Route::prefix('admin')->group(function () {
             return view('admin.account.add');
         })->name("admin.account.add");
     });
-
+    // User
     Route::prefix('user')->middleware('auth')->group(function () {
-        Route::get('/list', function () {
-            return view('admin.user.list');
-        })->name("admin.user.list");
-        Route::get('/add', function () {
-            return view('admin.user.add');
-        })->name("admin.user.add");
+        // User - List
+        Route::get('/list', [AppUserController::class, 'index'])->name("admin.user.list");
+        // User - Add
+        Route::get('/add', [AppUserController::class, 'create'])->name("admin.user.add");
+        // POST: User - Store
+        Route::post("/store", [AppUserController::class, 'store'])->name("admin.user.store");
+        // User - Edit
+        Route::get("/edit/{id?}", [AppUserController::class, 'edit'])->name("admin.user.edit");
+        // POST: User - Update
+        Route::post("/update/{id?}", [AppUserController::class, 'update'])->name("admin.user.update");
+        // User - Show
+        Route::get("/show/{id?}", [AppUserController::class, 'show'])->name("admin.user.show");
+        // User - Delete
+        Route::get("/destroy/{id?}", [AppUserController::class, 'destroy'])->name("admin.user.destroy");
     });
 });
