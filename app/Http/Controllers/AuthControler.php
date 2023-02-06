@@ -52,13 +52,11 @@ class AuthControler extends Controller
             return back();
         }
     }
-
     // GET: Đăng ký
     function get_register_page()
     {
         return view('admin.register');
     }
-
     // POST: Đăng ký
     function register(Request $request)
     {

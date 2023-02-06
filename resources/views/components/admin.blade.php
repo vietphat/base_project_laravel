@@ -17,16 +17,15 @@ $navbars = config('app-bar');
     <link rel="shortcut icon" href="/ad/assets/images/favicon.ico">
 
     <!-- Layout config Js -->
-    <script src="/ad/assets/js/layout.js"></script>
+    <script src="{{asset('/ad/assets/js/layout.js')}}"></script>
     <!-- Bootstrap Css -->
-    <link href="/ad/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{asset('/ad/assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
-    <link href="/ad/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{asset('/ad/assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
     <!-- App Css-->
-    <link href="/ad/assets/css/app.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{asset('/ad/assets/css/app.min.css')}}" rel="stylesheet" type="text/css" />
     <!-- custom Css-->
-    <link href="/ad/assets/css/custom.min.css" rel="stylesheet" type="text/css" />
-
+    <link href="{{asset('/ad/assets/css/custom.min.css')}}" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -539,7 +538,7 @@ $navbars = config('app-bar');
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="d-flex align-items-center">
                                     <img class="rounded-circle header-profile-user"
-                                        src="/storage/avatar/{{ Auth::user()->avatar }}" alt="Header Avatar">
+                                        src="/storage/images/{{ Auth::user()->avatar }}" alt="Header Avatar">
                                     <span class="text-start ms-xl-2">
                                         <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">
                                             {{ Auth::user()->fullname }}
@@ -1453,20 +1452,19 @@ $navbars = config('app-bar');
                     <button type="button" class="btn btn-light w-100" id="reset-layout">Reset</button>
                 </div>
                 <div class="col-6">
-                    <a href="https://1.envato.market/velzon-ad" target="_blank" class="btn btn-primary w-100">Buy
-                        Now</a>
+                    <a href="https://1.envato.market/velzon-ad" target="_blank" class="btn btn-primary w-100">Setting</a>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- JAVASCRIPT -->
-    <script src="/ad/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="/ad/assets/libs/simplebar/simplebar.min.js"></script>
-    <script src="/ad/assets/libs/node-waves/waves.min.js"></script>
-    <script src="/ad/assets/libs/feather-icons/feather.min.js"></script>
-    <script src="/ad/assets/js/pages/plugins/lord-icon-2.1.0.js"></script>
-    <script src="/ad/assets/js/plugins.js"></script>
+    <script src="{{asset('/ad/assets/libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{asset('/ad/assets/libs/simplebar/simplebar.min.js')}}"></script>
+    <script src="{{asset('/ad/assets/libs/node-waves/waves.min.js')}}"></script>
+    <script src="{{asset('/ad/assets/libs/feather-icons/feather.min.js')}}"></script>
+    <script src="{{asset('/ad/assets/js/pages/plugins/lord-icon-2.1.0.js')}}"></script>
+    <script src="{{asset('/ad/assets/js/plugins.js')}}"></script>
 
     <!-- App js -->
     <script src="/ad/assets/js/app.js"></script>

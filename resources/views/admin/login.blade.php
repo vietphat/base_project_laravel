@@ -1,42 +1,3 @@
-{{-- <!doctype html>
-<html lang="en">
-
-<head>
-    <title>Admin - Login</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS v5.2.1 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-
-</head>
-
-<body>
-    <div class="row">
-        <div class="col-lg-4 m-auto">
-            <p class="text-primary text-center display-6">Admin Login</p>
-            <form action="{{route('admin.store_login')}}" method="POST">
-                @csrf
-                <x-input name="email" type="email" label="Email"/>
-                <x-input name="password_hash" type="password" label="Password"/>
-                <button class="btn btn-dark w-100">Login</button>
-            </form>
-        </div>
-    </div>
-    <!-- Bootstrap JavaScript Libraries -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
-    </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
-        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
-    </script>
-</body>
-
-</html> --}}
-
 <!doctype html>
 <html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg"
     data-sidebar-image="none" data-preloader="disable">
@@ -52,15 +13,15 @@
     <link rel="shortcut icon" href="/ad/assets/images/favicon.ico">
 
     <!-- Layout config Js -->
-    <script src="/ad/assets/js/layout.js"></script>
+    <script src="{{asset('/ad/assets/js/layout.js')}}"></script>
     <!-- Bootstrap Css -->
-    <link href="/ad/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{asset('/ad/assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
-    <link href="/ad/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{asset('/ad/assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
     <!-- App Css-->
-    <link href="/ad/assets/css/app.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{asset('/ad/assets/css/app.min.css')}}" rel="stylesheet" type="text/css" />
     <!-- custom Css-->
-    <link href="/ad/assets/css/custom.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{asset('/ad/assets/css/custom.min.css')}}" rel="stylesheet" type="text/css" />
 
 
 </head>
@@ -168,19 +129,19 @@
     <!-- end auth-page-wrapper -->
 
     <!-- JAVASCRIPT -->
-    <script src="/ad/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="/ad/assets/libs/simplebar/simplebar.min.js"></script>
-    <script src="/ad/assets/libs/node-waves/waves.min.js"></script>
-    <script src="/ad/assets/libs/feather-icons/feather.min.js"></script>
-    <script src="/ad/assets/js/pages/plugins/lord-icon-2.1.0.js"></script>
-    <script src="/ad/assets/js/plugins.js"></script>
+    <script src="{{asset('/ad/assets/libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{asset('/ad/assets/libs/simplebar/simplebar.min.js')}}"></script>
+    <script src="{{asset('/ad/assets/libs/node-waves/waves.min.js')}}"></script>
+    <script src="{{asset('/ad/assets/libs/feather-icons/feather.min.js')}}"></script>
+    <script src="{{asset('/ad/assets/js/pages/plugins/lord-icon-2.1.0.js')}}"></script>
+    <script src="{{asset('/ad/assets/js/plugins.js')}}"></script>
 
     <!-- particles js -->
-    <script src="/ad/assets/libs/particles.js/particles.js"></script>
+    <script src="{{asset('/ad/assets/libs/particles.js/particles.js')}}"></script>
     <!-- particles app js -->
-    <script src="/ad/assets/js/pages/particles.app.js"></script>
+    <script src="{{asset('/ad/assets/js/pages/particles.app.js')}}"></script>
     <!-- password-addon init -->
-    <script src="/ad/assets/js/pages/password-addon.init.js"></script>
+    <script src="{{asset('/ad/assets/js/pages/password-addon.init.js')}}"></script>
 </body>
 
 </html>
