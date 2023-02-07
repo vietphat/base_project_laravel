@@ -39,7 +39,7 @@ class AppUserController extends Controller
         $messages = [
             'fullname' => 'Full Name',
             'email' => 'Email',
-            'password' => 'Password|min:4',
+            'password' => 'Password',
             'confirm_password' => 'Confirm Password',
             'address' => 'Address'
         ];
@@ -79,15 +79,11 @@ class AppUserController extends Controller
         $rules = [
             'fullname'=>'required',
             'email'=>'required|email',
-            'password'=>'required',
-            'confirm_password'=>'required|same:password',
             'address'=>'required'
         ];
         $messages = [
             'fullname' => 'Full Name',
             'email' => 'Email',
-            'password' => 'Password|min:4',
-            'confirm_password' => 'Confirm Password',
             'address' => 'Address'
         ];
 
