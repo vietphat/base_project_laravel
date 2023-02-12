@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AppUser;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -89,13 +90,10 @@ class AppUserController extends Controller
 
         $this->customValidate($data,$rules,$messages);
 
-        unset($data['confirm_password']);
-        $data['password'] = Hash::make($request->password);
-
         $userUpdate = AppUser::updateOrCreate(['id'=>$userId],$data);
         $userUpdate->save();
 
-        return back();
+        return redirect()->route('admin.user.list');
 
     }
 
@@ -105,10 +103,41 @@ class AppUserController extends Controller
         AppUser::destroy($userId);
         return back();
     }
+    // Profile
+    function info(){
+        return view('admin.user.info');
+    }
     // Hàm xác thực dữ liệu
     function customValidate($data, $rules, $messages)
     {
         $validator = Validator::make($data, $rules, [], $messages)->validate();
         return $validator;
+    }
+    // Đổi mật khẩu
+    function changePassword(){
+        return view('admin.user.change-password');
+    }
+    // POST: Đổi mật khẩu
+    function storeChangePassword(Request $request){
+        $data = $request->all();
+        unset($data['_token']);
+
+        $request->validate([
+            'old_password' => 'required',
+            'password' => 'required|different:old_password',
+            'confirm_password' => 'required|same:password',
+        ]);
+
+        if(!Hash::check($request->old_password, Auth::user()->password)){
+            return back();
+        }
+
+        $user = AppUser::findOrFail(Auth::user()->id);
+        unset($data['old_password']);
+        unset($data['confirm_password']);
+        $data['password'] = Hash::make($request->password);
+        $user->update($data);
+
+        return redirect()->route('admin.logout');
     }
 }

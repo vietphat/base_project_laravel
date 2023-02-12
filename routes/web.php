@@ -10,6 +10,7 @@ Route::get('/', function () {
 
 // Admin
 Route::prefix('admin')->group(function () {
+
     // Admin - Login
     Route::get('/', [AuthControler::class, 'get_login_page'])->name('admin.get_login_page');
     Route::post('/', [AuthControler::class, 'login'])->name('admin.login');
@@ -38,6 +39,8 @@ Route::prefix('admin')->group(function () {
     });
     // User
     Route::prefix('user')->middleware('auth')->group(function () {
+        // User - Info
+        Route::get('/info', [AppUserController::class, 'info'])->name("admin.user.info");
         // User - List
         Route::get('/list', [AppUserController::class, 'index'])->name("admin.user.list");
         // User - Add
@@ -52,5 +55,9 @@ Route::prefix('admin')->group(function () {
         Route::get("/show/{id?}", [AppUserController::class, 'show'])->name("admin.user.show");
         // User - Delete
         Route::get("/destroy/{id?}", [AppUserController::class, 'destroy'])->name("admin.user.destroy");
+        // User - Change Password
+        Route::get("/change-password", [AppUserController::class, 'changePassword'])->name("admin.user.change_password");
+        // POST: User - Change Password
+        Route::post("/change-password", [AppUserController::class, 'storeChangePassword'])->name("admin.user.store_change_password");
     });
 });
